@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+// const ejs = require("ejs");
+// router.set('view engine', 'ejs')
+
 const loginRegisterItem = require('../controllers/loginRegister')
 const addDetail = require('../controllers/addDetail')
 const viewRequestAdmin = require('../controllers/viewRequestAdmin')
@@ -13,16 +16,17 @@ const viewAllRequest = require("../controllers/viewAllRequest")
 
 router.get("/", (req, res) => {
     try {
-        console.log("Welcome to Request Management System")
-        res.send("Login")
+        console.log("Welcome to Request Management System - Login")
+        res.render("common/login.ejs")
+        // res.send("Login success..")
     } catch (error) {
         res.send(error);
     }
 })
 
-router.get("/login-user",loginRegisterItem.LoginUser)
+router.post("/login-user",loginRegisterItem.LoginUser)
 
-router.get("/register-user",loginRegisterItem.RegisterUser)
+router.post("/register-user",loginRegisterItem.RegisterUser)
 
 router.get("/add-detail",addDetail)
 

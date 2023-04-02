@@ -2,6 +2,10 @@ const express = require('express')
 const mongoose = require('mongoose');
 
 const app = express();
+const ejs = require("ejs");
+app.set('view engine', 'ejs')
+app.use(express.static("public"));
+
 
 const router = require("./source/routes/routes")
 app.use(express.json())
@@ -20,7 +24,6 @@ dotenv.config()
 //     console.log("Databases:");
 //     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 // };
-
 // // Version upgrade so this code..
 // async function dbConnect() {
 //     const client = new MongoClient(process.env.MONGODB_URL);
@@ -42,8 +45,6 @@ dotenv.config()
 //         console.log("Server is running")
 //     })
 // })
-
-
 
 mongoose.connect(process.env.MONGODB_URL)
     .then(() => {
