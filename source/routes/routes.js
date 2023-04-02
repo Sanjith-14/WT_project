@@ -9,6 +9,8 @@ const requests = require('../controllers/approveOrRejectReq')
 // router.use(express.json());
 const threeRequests = require("../controllers/ViewRequestUser")
 
+const viewAllRequest = require("../controllers/viewAllRequest")
+
 router.get("/", (req, res) => {
     try {
         console.log("Welcome to Request Management System")
@@ -23,6 +25,9 @@ router.get("/login-user",loginRegisterItem.LoginUser)
 router.get("/register-user",loginRegisterItem.RegisterUser)
 
 router.get("/add-detail",addDetail)
+
+
+router.get("/view-all-request",viewAllRequest)
 
 router.get("/view-request",viewRequestAdmin)
 

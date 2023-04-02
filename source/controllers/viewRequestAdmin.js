@@ -1,30 +1,22 @@
 const items = require("../models/user_model")
 const Detail = items.Detail
 
-// If the user views it , it marked as view..
+// If the user views it , it marked as read...
 viewRequestAdmin = async (req, res) => {
-    const email = req.body.email; 
+    const {id,email} = req.body; 
     // const data =await Detail.find({"mails.$[].toMail":email}) 
-
-    const data = await Detail.aggregate([
-        {
-            $unwind: '$mails'
-        },
-        {
-            $match: {
-                'mails.toMail': email
-            }
-        }
-    ])
 
     // console.log(data)
     const detail = await Detail.updateMany(
         {"mails.toMail":email},
         {$set:{"mails.$[ele].read" : true}},
-        { arrayFilters: [ { "ele.toMail": email } ] }
+        { arrayFilters: [ { "ele.toMail": email , "ele._id":id } ] }
     )
     
-    res.status(200).json(data);
+    res.status(200).json(detail);
 }
 
 module.exports = viewRequestAdmin;
+
+
+// If possible do view request and read requests
