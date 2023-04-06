@@ -1,22 +1,82 @@
+
 const items = require("../models/user_model")
 const Detail = items.Detail
 
-// If the user views it , it marked as read...
-viewRequestAdmin = async (req, res) => {
-    const {id,email} = req.body; 
-    // const data =await Detail.find({"mails.$[].toMail":email}) 
 
-    // console.log(data)
-    const detail = await Detail.updateMany(
-        {"mails.toMail":email},
-        {$set:{"mails.$[ele].read" : true}},
-        { arrayFilters: [ { "ele.toMail": email , "ele._id":id } ] }
-    )
+
+const viewRequestAdmin = async (req, res) => {
+    const email = req.body.email;
+    const dropVal = req.body.dropVal;
+    console.log(email,"  =-= ",dropVal);
+    let data = await Detail.aggregate([
+        {
+            $unwind: '$mails'
+        },
+        {
+            $match: {
+                'mails.toMail': email
+            }
+        }
+    ])
     
-    res.status(200).json(detail);
-}
+    
+
+  if(dropVal === "pending"){
+    data = await Detail.aggregate([
+        {
+            $unwind: '$mails'
+        },
+        {
+            $match: {
+                'mails.toMail':email,
+                'mails.pendingFlag':true
+            }
+        }
+    ])
+  }
+
+  else if(dropVal === "accepted"){
+    data = await Detail.aggregate([
+        {
+            $unwind: '$mails'
+        },
+        {
+            $match: {
+                'mails.toMail':email,
+                'mails.approvedFlag':true
+            }
+        }
+    ])
+  }
+  else if(dropVal === "rejected"){
+    data = await Detail.aggregate([
+        {
+            $unwind: '$mails'
+        },
+        {
+            $match: {
+                'mails.toMail':email,
+                'mails.rejectedFlag':true
+            }
+        }
+    ])
+  }
+  else{
+    data = await Detail.aggregate([
+        {
+            $unwind: '$mails'
+        },
+        {
+            $match: {
+                'mails.toMail':email
+            }
+        }
+    ])
+  }
+
+  res.render("admin/adminViewRequest.ejs", { data: data , email:email});
+    
+  
+};
 
 module.exports = viewRequestAdmin;
-
-
-// If possible do view request and read requests

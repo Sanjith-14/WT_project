@@ -1,54 +1,58 @@
 const mongoose = require('mongoose');
 
-var validateEmail = function(email) {
-    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    return re.test(email)
+var validateEmail = function (email) {
+    var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return regex.test(email)
 };
 
 const mailSchema = new mongoose.Schema({
-    toMail:{
+    toMail: {
         // To whom we send the mail..
-        type:String,
-        required:true,
+        type: String,
+        required: true,
     },
-    sendDateTime:{
+    subject: {
+        type: String,
+        required: true,
+    },
+    content: {
+        type: String,
+        required: true,
+    },
+    sendDateTime: {
         // When the email is send
-        type:Date,
-        required:true,
+        type: Date,
+        required: true,
         default: Date.now,
     },
-    approveOrRejectTime : {
-        type:Date,
+    approveOrRejectTime: {
+        type: Date,
         // required:true
     },
-    approverContent:{
-        type:String,
+    approverContent: {
+        type: String,
         // required:true
     },
-    content:{
-        type:String,
-        required:true,
-    },
-    pendingFlag : {
+    pendingFlag: {
         type: Boolean,
-        required:true,
-        default:true //previously entered false
+        required: true,
+        default: true //previously entered false
     },
     // If approvedflag and rejectedflag are empty(false) , we want to display..
-    approvedFlag : {
-        type : Boolean,
-        required:true,
-        default:false
+    approvedFlag: {
+        type: Boolean,
+        required: true,
+        default: false
     },
-    rejectedFlag : {
-        type : Boolean,
-        required:true,
-        default:false
+    rejectedFlag: {
+        type: Boolean,
+        required: true,
+        default: false
     },
-    read:{
+    read: {
         // Check whether the mail is read or not..
-        type:Boolean,
-        default:false,
+        type: Boolean,
+        default: false,
     }
 
 })
@@ -56,49 +60,61 @@ const mailSchema = new mongoose.Schema({
 
 
 const detailSchema = new mongoose.Schema({
-    name : {
+    email: {
         type: String,
-        required:true,
+        required: true,
+        unique: true,
     },
-    email : {
-        type:String,
-        required:true,
-        unique:true,
+    name: {
+        type: String,
+        required: true,
     },
-    mails:{
-        type:[mailSchema],
-        required:true,
-        default:[]
+
+    mails: {
+        type: [mailSchema],
+        required: true,
+        default: []
     }
-    
+
 })
 
-const Detail = mongoose.model('Detail',detailSchema)
+const Detail = mongoose.model('Detail', detailSchema)
 
 const credentialSchema = new mongoose.Schema({
-    email : {
-        type:String,
-        required:true,
-        unique:true,
+    email: {
+        type: String,
+        required: true,
+        unique: true,
         validate: [validateEmail, 'Please fill a valid email address'],
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
-    }
-    ,
-    name : {
+    },
+    name: {
         type: String,
-        required:true,
+        required: true
     },
-    role : {
-        type:String,
+    admNo: {
+        type: String,
         required:true
     },
-    password:{
-        type:String,
-        required:true
+    rollNo: {
+        type: String,
+        required: true
+    },
+    dept: {
+        type: String,
+        required: true
+    },
+    role: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
     },
 })
 
 const Credential = mongoose.model('Credential', credentialSchema);
 
 
-module.exports = {Credential,Detail,mailSchema}
+module.exports = { Credential, Detail, mailSchema }

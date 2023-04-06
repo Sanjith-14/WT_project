@@ -1,21 +1,21 @@
-
 const items = require("../models/user_model")
 const Credential = items.Credential;
 const Detail = items.Detail;
 
-const RegisterUser = async (req,res)=>{
+const RegisterUser = async (req, res) => {
     try {
-        const {email,name,role,password} = req.body;
-        const userCheck = await Credential.find({email:email})
-        if(userCheck.length == 0){
-            const credential = new Credential({email:email,name:name,role:role,password:password})
+        const { email, name, admNo, rollNo, dept, role, password } = req.body;
+        const userCheck = await Credential.find({ email: email })
+        if (userCheck.length == 0) {
+            const credential = new Credential({ email: email, name: name, admNo: admNo, rollNo: rollNo, dept: dept, role: role, password: password })
             await credential.save()
-            const detail = new Detail({name:name,email:email})
+            const detail = new Detail({ name: name, email: email })
             await detail.save()
             return res.status(200).json({ message: "User registered successfully" })
             // redirect to home / login page
         }
-        else{
+
+        else {
             return res.status(200).json({ message: "User already exists" })
             // Redirect to login page
         }
@@ -26,17 +26,50 @@ const RegisterUser = async (req,res)=>{
     }
 }
 
-const LoginUser = async (req,res) =>{
+const LoginUser = async (req, res) => {
     try {
-        const {email,password} = req.body;
-        let user = await Credential.find({email:email,password:password})
-        if(user.length != 0){
-            res.status(200).json({message: "User login successful"});
-            // Redirect to login page
+        const { email, password } = req.body;
+        let user = await Credential.find({ email: email, password: password })
+        // console.log(user[0].role);
+        // res.status(200).json({"message":user});
+        if (user.length != 0) {
+            // res.status(200).json({message: "User login successful"});
+            // Redirect to admin/client page
+
+            let u = user[0].role;
+            if (u === "Student") {
+                const data = await Detail.aggregate([
+                    {
+                        $unwind: '$mails'
+                    },
+                    {
+                        $match: {
+                            email: email
+                        }
+                    }
+                ])
+
+                res.render("client/clientViewRequest.ejs", { data: data ,email:email});
+            }
+            else if (u == "Admin") {
+
+                const data = await Detail.aggregate([
+                    {
+                        $unwind: '$mails'
+                    },
+                    {
+                        $match: {
+                            'mails.toMail': email
+                        }
+                    }
+                ])
+                res.render("admin/adminViewRequest.ejs", { data: data , email:email});
+            }
         }
-        else{
-            res.status(200).json({message :"Invalid user.Please login again"})
+        else {
+            // res.status(200).json({message :"Invalid user.Please login again"})
             // Redirect to login page
+            res.render("common/login.ejs")
         }
     } catch (error) {
         console.log("Error in login user")
@@ -45,5 +78,4 @@ const LoginUser = async (req,res) =>{
     }
 }
 
-module.exports = {RegisterUser,LoginUser};
-
+module.exports = { RegisterUser, LoginUser };

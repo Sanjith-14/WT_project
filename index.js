@@ -6,6 +6,10 @@ const ejs = require("ejs");
 app.set('view engine', 'ejs')
 app.use(express.static("public"));
 
+// const bodyParser = require("body-parser");
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json())
+// app.use(require('connect').bodyParser());
 
 const router = require("./source/routes/routes")
 app.use(express.json())

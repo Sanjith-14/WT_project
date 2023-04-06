@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+    integrity="sha384-ODmDIVzN+pFdexxHEHFBQh5/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/request.css">
+  <title>NECBDC</title>
+</head>
+
+<body>
+  <div class="title">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="head">
+          <h1>Request Tracking System</h1>
+          <h5>Under Kumaraguru College of Technology , CBE</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar taskbar">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg ">
+        <a class="navbar-brand" href="home.ejs">
+          <h5>Home</h5>
+        </a>
+      </nav>
+      <nav class="navbar navbar-expand-lg ">
+        <a class="navbar-brand" href="profile.ejs">
+          <h5>Profile</h5>
+        </a>
+      </nav>
+      <nav class="navbar navbar-expand-lg ">
+        <a class="navbar-brand" href="request.ejs">
+          <h5>Request</h5>
+        </a>
+      </nav>
+      <nav class="navbar navbar-expand-lg ">
+        <a class="navbar-brand" href="newrequest.html">
+          <h5>New Request</h5>
+        </a>
+      </nav>
+      <nav class="navbar navbar-expand-lg ">
+        <a class="navbar-brand" href="/">
+          <!-- USE ONCLICK FUNCTION-->
+          <h5>Logout</h5>
+        </a>
+      </nav>
+    </div>
+  </nav>
+  <div class="row rw1">
+    <div class="col-lg-6">
+      <h2>Request List</h2>
+      <br />
+      <hr />
+    </div>
+    <div class="col-lg-6">
+      <div class="row rw2 ">
+        <div class="col-lg-12">
+          <form action="/view-request-admin" method="post">
+            <label>Filter</label>
+            <select class="filter" id="filter" name="filter">
+              <option value="all">All</option>
+              <option value="pending">Pending</option>
+              <option value="accepted">Accept</option>
+              <option value="rejected">Reject</option>
+            </select>
+            <input id="email"  type="hidden" name="email" value="<%=email%>" />
+            <input id="drop-val"  type="hidden" name="dropVal" value="" />
+            <button type="submit" class="btn  btn-light" onclick="getOption()">Referesh data</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="design">
+
+  </div>
+
+
+
+
+  <div class="requestModule">
+    <% data.forEach((item,idx)=> { %>
+      <div class="request">
+        <div class="row r1">
+          <div class="col-lg-3">
+            <h4>Priorty:High</h4>
+          </div>
+          <div class="col-lg-3">
+            <h4>From mail :-<%=item.email%>
+            </h4>
+            <h4>Name:-<%=item.name%>
+            </h4>
+            <h6>Rollno:- to do </h6>
+            <!-- If possible add email in this.. -->
+          </div>
+          <div class="col-lg-3">
+            <h4>Date:-<%=item.mails.sendDateTime.toISOString().split( "T" )[0]%>
+            </h4>
+            <h4>Time:-<%=item.mails.sendDateTime.toISOString().split( "T" )[1].substring(0,5)%>
+            </h4>
+          </div>
+          
+          <div class="col-lg-3">
+            <h4>
+              <%=item.mails.content%>
+            </h4>
+            
+            <form action="/view-particular-request" method="post">
+              <input type="hidden" name="id" value="<%=item.mails._id%>" />
+              <input type="hidden" name="email" value="<%=item.mails.toMail%>"/>
+              <button type="submit">More details</button>
+            </form>
+            <!-- <form action="/view-particular-request/{$item._id}" method="get"><button type="submit">More details</button></form> -->
+            <!-- Do add api above.. -->
+          </div>
+        </div>
+      </div>
+      <% }); %>
+  </div>
+
+
+
+
+
+  </div>
+  <script src="js/main.js" charset="utf-8"></script>
+</body>
+
+</html>
+
+<script>
+  function getOption() {
+        selectElement = document.querySelector('#filter');
+        output = selectElement.value;
+        console.log("SElECted val" , output);
+        document.getElementById("drop-val").value = output;
+        
+        // console.log(document.getElementById("drop-val").value);
+    }
+</script>

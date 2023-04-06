@@ -1,18 +1,29 @@
 const express = require('express');
 const router = express.Router();
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
+
+// const bodyParser = require("body-parser");
+// router.use(bodyParser.urlencoded({ extended: true }));
+// router.use(bodyParser.json())
+
+// router.use(require('connect').bodyParser());
 
 // const ejs = require("ejs");
 // router.set('view engine', 'ejs')
 
 const loginRegisterItem = require('../controllers/loginRegister')
 const addDetail = require('../controllers/addDetail')
-const viewRequestAdmin = require('../controllers/viewRequestAdmin')
+
+const viewParticularRequest = require('../controllers/viewParticularRequest')
 
 const requests = require('../controllers/approveOrRejectReq')
 // router.use(express.json());
 const threeRequests = require("../controllers/ViewRequestUser")
 
-const viewAllRequest = require("../controllers/viewAllRequest")
+const viewRequest = require("../controllers/viewAllRequest")
+
+const viewRequestAdmin = require("../controllers/viewRequestAdmin")
 
 router.get("/", (req, res) => {
     try {
@@ -31,18 +42,27 @@ router.post("/register-user",loginRegisterItem.RegisterUser)
 router.get("/add-detail",addDetail)
 
 
-router.get("/view-all-request",viewAllRequest)
+router.get("/view-all-request",viewRequest.viewAllRequest)
 
-router.get("/view-request",viewRequestAdmin)
+router.post("/view-particular-request",viewParticularRequest)
 
-router.get("/approve-request",requests.approveRequest)
+// router.get("/view-request",viewRequestAdmin) - deleted..
 
-router.get("/reject-request",requests.rejectRequest)
+router.post("/approve-request",requests.approveRequest)
 
-router.get("/view-pending-request",threeRequests.viewPendingRequestUser)
+router.post("/reject-request",requests.rejectRequest)
 
-router.get("/view-approved-request",threeRequests.viewApprovedRequestUser)
+// router.get("/view-pending-request",threeRequests.viewPendingRequestUser)
 
-router.get("/view-rejected-request",threeRequests.viewRejectedRequestUser)
+// router.get("/view-approved-request",threeRequests.viewApprovedRequestUser)
+
+// router.get("/view-rejected-request",threeRequests.viewRejectedRequestUser)
+
+
+router.post("/view-request-admin",viewRequestAdmin)
+
+router.post("/view-request-user",threeRequests.viewRequestUser)
+
+router.post("/view-particular-request-user",threeRequests.viewParticularRequestUser)
 
 module.exports = router;

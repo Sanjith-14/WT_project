@@ -1,19 +1,42 @@
 const items = require("../models/user_model")
 const Detail = items.Detail
 
-viewAllRequest = async (req,res)=>{
-    const {id,email} = req.body;
+
+viewAllRequest = async (req, res) => {
+    const { mail } = req.body;
     const data = await Detail.aggregate([
         {
             $unwind: '$mails'
         },
         {
             $match: {
-                'mails.toMail': email
+                'mails.toMail': mail
             }
         }
     ])
-    res.status(200).json({"message":data});
+    // const det = await Detail.findById({'mails._id':id});
+    
+    res.status(200).json({ "message": data });
 }
 
-module.exports = viewAllRequest;
+
+// viewParticularRequest = async (req, res) => {
+//     const { mail, id } = req.body;
+//     console.log(id);
+//     const data = await Detail.aggregate([
+//         {
+//             $unwind: '$mails'
+//         },
+//         {
+//             $match: {
+//                 'mails._id': new ObjectId(id),
+//                 'mails.toMail': mail
+//                 // 'mails._id':id
+//             }
+//         }
+//     ])
+
+//     res.status(200).json({ "message": data });
+// }
+
+module.exports = { viewAllRequest };
