@@ -20,7 +20,8 @@ const addDetail = async (req, res) => {
       }
     );
 
-    res.status(200).json({ message: "Added Detail" });
+    // res.status(200).json({ message: "Added Detail" });
+    
   } catch (error) {
     console.log("Error in add Detail");
     console.log(error);

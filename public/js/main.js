@@ -1,4 +1,14 @@
-// spam is used to give error note if any one input is invalid check with user[database]
+const togglePassword = document.getElementById("togglePassword");
+const password = document.getElementById("password");
+togglePassword.addEventListener("click", () => {
+  const type =
+    password.getAttribute("type") === "password" ? "text" : "password";
+  password.setAttribute("type", type);
+  togglePassword.className =
+    password.getAttribute("type") === "password"
+      ? "bi bi-eye-slash icon"
+      : "bi bi-eye icon";
+});
 
 function switchVisible() {
   const x = document.getElementById("loginModule");
@@ -14,7 +24,41 @@ function switchVisible() {
   }
 }
 
-var login = document.getElementById("login");
-login.addEventListener("click", function () {
-  window.open("./main.html", "_self");
+const validateEmail = () => {
+  const emailElement = document.getElementById("email");
+  const email = emailElement.value;
+  var regex =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (email.trim() == "") {
+    return "Email can't be empty";
+  }
+  if (!String(email).match(regex)) {
+    return "Invalid email";
+  }
+  return "";
+};
+
+const validatePassword = () => {
+  const passwordElement = document.getElementById("password");
+  const password = passwordElement.value;
+  if (password.trim() == "") {
+    return "Password can't be empty";
+  }
+  return "";
+};
+
+const validateForm = () => {
+  const emailError = document.getElementById("emailError");
+  const emailErrorText = validateEmail();
+  emailError.innerText = emailErrorText;
+  const passwordError = document.getElementById("passwordError");
+  const passwordErrorText = validatePassword();
+  passwordError.innerText = passwordErrorText;
+  return emailErrorText === "" && passwordErrorText === "";
+};
+
+const loginForm = document.getElementById("loginForm");
+loginForm.addEventListener("submit", (event) => {
+  console.log("Submit");
+  if (!validateForm()) event.preventDefault();
 });

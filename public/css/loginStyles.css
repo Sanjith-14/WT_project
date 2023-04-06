@@ -89,5 +89,8 @@ label {
 .verify {
   margin-top: 10px;
 }
-
-/* color #90CAF9 #018cfe */
+.icon {
+  z-index: 1;
+  margin-left: -45px;
+  color: #018cfe;
+}

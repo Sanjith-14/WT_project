@@ -14,11 +14,12 @@ router.use(express.urlencoded({ extended: true }));
 
 const loginRegisterItem = require("../controllers/loginRegister");
 const addDetail = require("../controllers/addDetail");
+const newReq = require("../controllers/newReq");
 
 const viewParticularRequest = require("../controllers/viewParticularRequest");
 
 const requests = require("../controllers/approveOrRejectReq");
-// router.use(express.json());
+
 const threeRequests = require("../controllers/ViewRequestUser");
 
 const viewRequest = require("../controllers/viewAllRequest");
@@ -29,7 +30,6 @@ router.get("/", (req, res) => {
   try {
     console.log("Welcome to Request Management System - Login");
     res.render("common/login.ejs");
-    // res.send("Login success..")
   } catch (error) {
     res.send(error);
   }
@@ -40,6 +40,8 @@ router.post("/login-user", loginRegisterItem.LoginUser);
 router.post("/register-user", loginRegisterItem.RegisterUser);
 
 router.get("/add-detail", addDetail);
+
+router.post("/new-request", newReq);
 
 router.get("/view-all-request", viewRequest.viewAllRequest);
 

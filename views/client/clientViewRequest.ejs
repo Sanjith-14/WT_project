@@ -51,9 +51,12 @@
         </a>
       </nav>
       <nav class="navbar navbar-expand-lg ">
-        <a class="navbar-brand" href="newrequest.html">
-          <h5>New Request</h5>
-        </a>
+        <form action="/new-request" method="post">
+          <input id="email" type="hidden" name="email" value="<%=email%>" />
+          
+            <button type="submit">New REquest</button>
+          </a>
+        </form>
       </nav>
       <nav class="navbar navbar-expand-lg ">
         <a class="navbar-brand" href="/">

@@ -70,7 +70,7 @@ const LoginUser = async (req, res) => {
             },
           },
         ]);
-        res.render("admin/adminViewRequest.ejs", { data: data, email: email });
+        res.render("admin/adminViewRequest.ejs", { data: data });
       }
     } else {
       // res.status(200).json({message :"Invalid user.Please login again"})
