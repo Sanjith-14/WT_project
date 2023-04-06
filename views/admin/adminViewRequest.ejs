@@ -80,8 +80,8 @@
               <option value="accepted">Accept</option>
               <option value="rejected">Reject</option>
             </select>
-            <input id="email"  type="hidden" name="email" value="<%=email%>" />
-            <input id="drop-val"  type="hidden" name="dropVal" value="" />
+            <input id="email" type="hidden" name="email" value="<%=email%>" />
+            <input id="drop-val" type="hidden" name="dropVal" value="" />
             <button type="submit" class="btn  btn-light" onclick="getOption()">Referesh data</button>
           </form>
         </div>
@@ -116,15 +116,15 @@
             <h4>Time:-<%=item.mails.sendDateTime.toISOString().split( "T" )[1].substring(0,5)%>
             </h4>
           </div>
-          
+
           <div class="col-lg-3">
             <h4>
               <%=item.mails.content%>
             </h4>
-            
+
             <form action="/view-particular-request" method="post">
               <input type="hidden" name="id" value="<%=item.mails._id%>" />
-              <input type="hidden" name="email" value="<%=item.mails.toMail%>"/>
+              <input type="hidden" name="email" value="<%=item.mails.toMail%>" />
               <button type="submit">More details</button>
             </form>
             <!-- <form action="/view-particular-request/{$item._id}" method="get"><button type="submit">More details</button></form> -->
@@ -147,11 +147,11 @@
 
 <script>
   function getOption() {
-        selectElement = document.querySelector('#filter');
-        output = selectElement.value;
-        console.log("SElECted val" , output);
-        document.getElementById("drop-val").value = output;
-        
-        // console.log(document.getElementById("drop-val").value);
-    }
+    selectElement = document.querySelector('#filter');
+    output = selectElement.value;
+    console.log("SElECted val", output);
+    document.getElementById("drop-val").value = output;
+
+    // console.log(document.getElementById("drop-val").value);
+  }
 </script>

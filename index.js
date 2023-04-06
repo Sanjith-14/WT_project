@@ -1,9 +1,9 @@
-const express = require('express')
-const mongoose = require('mongoose');
+const express = require("express");
+const mongoose = require("mongoose");
 
 const app = express();
 const ejs = require("ejs");
-app.set('view engine', 'ejs')
+app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 // const bodyParser = require("body-parser");
@@ -11,16 +11,15 @@ app.use(express.static("public"));
 // app.use(bodyParser.json())
 // app.use(require('connect').bodyParser());
 
-const router = require("./source/routes/routes")
-app.use(express.json())
+const router = require("./source/routes/routes");
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", router)
-
+app.use("/", router);
 
 // For accessing the variables in .env files..
-const dotenv = require('dotenv')
-dotenv.config()
+const dotenv = require("dotenv");
+dotenv.config();
 
 // async function listDatabases(client){
 //     databasesList = await client.db().admin().listDatabases();
@@ -50,13 +49,14 @@ dotenv.config()
 //     })
 // })
 
-mongoose.connect(process.env.MONGODB_URL)
-    .then(() => {
-        console.log('Connected to the database ')
-        app.listen((process.env.PORT || 8080), () => {
-            console.log("Server is running")
-        })
-    })
-    .catch((err) => {
-        console.error(`Error connecting to the database. n${err}`);
-})
+mongoose
+  .connect(process.env.MONGODB_URL)
+  .then(() => {
+    console.log("Connected to the database ");
+    app.listen(process.env.PORT || 8080, () => {
+      console.log("Server is running");
+    });
+  })
+  .catch((err) => {
+    console.error(`Error connecting to the database. n${err}`);
+  });

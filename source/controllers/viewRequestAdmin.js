@@ -1,82 +1,71 @@
-
-const items = require("../models/user_model")
-const Detail = items.Detail
-
-
+const items = require("../models/user_model");
+const Detail = items.Detail;
 
 const viewRequestAdmin = async (req, res) => {
-    const email = req.body.email;
-    const dropVal = req.body.dropVal;
-    console.log(email,"  =-= ",dropVal);
-    let data = await Detail.aggregate([
-        {
-            $unwind: '$mails'
-        },
-        {
-            $match: {
-                'mails.toMail': email
-            }
-        }
-    ])
-    
-    
+  const email = req.body.email;
+  const dropVal = req.body.dropVal;
+  console.log(email, "  =-= ", dropVal);
+  let data = await Detail.aggregate([
+    {
+      $unwind: "$mails",
+    },
+    {
+      $match: {
+        "mails.toMail": email,
+      },
+    },
+  ]);
 
-  if(dropVal === "pending"){
+  if (dropVal === "pending") {
     data = await Detail.aggregate([
-        {
-            $unwind: '$mails'
+      {
+        $unwind: "$mails",
+      },
+      {
+        $match: {
+          "mails.toMail": email,
+          "mails.pendingFlag": true,
         },
-        {
-            $match: {
-                'mails.toMail':email,
-                'mails.pendingFlag':true
-            }
-        }
-    ])
-  }
-
-  else if(dropVal === "accepted"){
+      },
+    ]);
+  } else if (dropVal === "accepted") {
     data = await Detail.aggregate([
-        {
-            $unwind: '$mails'
+      {
+        $unwind: "$mails",
+      },
+      {
+        $match: {
+          "mails.toMail": email,
+          "mails.approvedFlag": true,
         },
-        {
-            $match: {
-                'mails.toMail':email,
-                'mails.approvedFlag':true
-            }
-        }
-    ])
-  }
-  else if(dropVal === "rejected"){
+      },
+    ]);
+  } else if (dropVal === "rejected") {
     data = await Detail.aggregate([
-        {
-            $unwind: '$mails'
+      {
+        $unwind: "$mails",
+      },
+      {
+        $match: {
+          "mails.toMail": email,
+          "mails.rejectedFlag": true,
         },
-        {
-            $match: {
-                'mails.toMail':email,
-                'mails.rejectedFlag':true
-            }
-        }
-    ])
-  }
-  else{
+      },
+    ]);
+  } else {
     data = await Detail.aggregate([
-        {
-            $unwind: '$mails'
+      {
+        $unwind: "$mails",
+      },
+      {
+        $match: {
+          "mails.toMail": email,
         },
-        {
-            $match: {
-                'mails.toMail':email
-            }
-        }
-    ])
+      },
+    ]);
   }
 
-  res.render("admin/adminViewRequest.ejs", { data: data , email:email});
-    
-  
+  res.render("admin/adminViewRequest.ejs", { data: data, email: email });
 };
 
 module.exports = viewRequestAdmin;

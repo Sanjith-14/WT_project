@@ -5,18 +5,18 @@ const Detail = items.Detail;
 const viewRequestUser = async (req, res) => {
   const email = req.body.email;
   const dropVal = req.body.dropVal;
-  console.log(email,"+",dropVal);
+  console.log(email, "+", dropVal);
   let data = await Detail.aggregate([
     {
       $unwind: "$mails",
     },
     {
       $match: {
-        email: email
+        email: email,
       },
     },
   ]);
-  if(dropVal === 'pending'){
+  if (dropVal === "pending") {
     data = await Detail.aggregate([
       {
         $unwind: "$mails",
@@ -29,8 +29,7 @@ const viewRequestUser = async (req, res) => {
         },
       },
     ]);
-  }
-  else if(dropVal==='accepted'){
+  } else if (dropVal === "accepted") {
     data = await Detail.aggregate([
       {
         $unwind: "$mails",
@@ -44,8 +43,7 @@ const viewRequestUser = async (req, res) => {
         },
       },
     ]);
-  }
-  else if(dropVal === 'rejected'){
+  } else if (dropVal === "rejected") {
     data = await Detail.aggregate([
       {
         $unwind: "$mails",
@@ -59,20 +57,19 @@ const viewRequestUser = async (req, res) => {
         },
       },
     ]);
-  }
-  else{
+  } else {
     data = await Detail.aggregate([
       {
         $unwind: "$mails",
       },
       {
         $match: {
-          email: email
+          email: email,
         },
       },
     ]);
   }
-  res.render("client/clientViewRequest.ejs", { data: data ,email:email});
+  res.render("client/clientViewRequest.ejs", { data: data, email: email });
   // res.status(200).json({ message: data });
 };
 
@@ -122,15 +119,17 @@ const viewParticularRequestUser = async (req, res) => {
     {
       $match: {
         email: email,
-        "mails._id": new ObjectId(id)
+        "mails._id": new ObjectId(id),
       },
     },
   ]);
-  res.render("client/clientViewParticularRequest.ejs", { data: data , email:email});
-    
+  res.render("client/clientViewParticularRequest.ejs", {
+    data: data,
+    email: email,
+  });
 };
 
 module.exports = {
   viewRequestUser,
-  viewParticularRequestUser
+  viewParticularRequestUser,
 };

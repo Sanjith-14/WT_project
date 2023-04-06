@@ -24,71 +24,70 @@
 <body>
   <h1>Particular Request</h1>
   <% data.forEach((item,idx)=> { %>
-    
-          <h4>Priorty:High</h4>
-          <h4>To mail :-<%=item.mails.toMail%>
-          </h4>
-          <h4>Name:-<%=item.name%>
-          </h4>
-          <h6>Rollno:- to do </h6>
-          <!-- If possible add email in this.. -->
-        
-          <h4>Date:-<%=item.mails.sendDateTime.toISOString().split( "T" )[0]%>
-          </h4>
-          <h4>Time:-<%=item.mails.sendDateTime.toISOString().split( "T" )[1].substring(0,5)%>
-       
-          <h4>
-            <%=item.mails.content%>
+
+    <h4>Priorty:High</h4>
+    <h4>To mail :-<%=item.mails.toMail%>
+    </h4>
+    <h4>Name:-<%=item.name%>
+    </h4>
+    <h6>Rollno:- to do </h6>
+    <!-- If possible add email in this.. -->
+
+    <h4>Date:-<%=item.mails.sendDateTime.toISOString().split( "T" )[0]%>
+    </h4>
+    <h4>Time:-<%=item.mails.sendDateTime.toISOString().split( "T" )[1].substring(0,5)%>
+
+        <h4>
+          <%=item.mails.content%>
             <%=item.mails._id%>
-          </h4>
-          <h4>
-            <%=item.mails.subject%>
-          </h4>
+        </h4>
+        <h4>
+          <%=item.mails.subject%>
+        </h4>
 
-          
 
-          <% if (item.mails.pendingFlag === true) { %>
-            <form action="/approve-request" method="post">
-              <input type="text" name="content" value="" placeholder="Enter reason" required/>
-              <!-- <input type="hidden" name="id" value="<%=item.mails._id%>" /> -->
-              <!-- add if statement.. -->
-              <input type="hidden" name="id" value="<%=item.mails._id%>" />
-              <input type="hidden" name="email" value="<%=item.mails.toMail%>" />
-              <button type="submit" onclick= " alertBox('Approved successfully')" >Approve</button>
-              
-            </form>
 
-            <form action="/reject-request" method="post">
-              <input type="text" name="content" value="" placeholder="Enter reason" required/>
-              <input type="hidden" name="id" value="<%=item.mails._id%>" />
-              <input type="hidden" name="email" value="<%=item.mails.toMail%>" />
-              
-              <button type="submit" onclick= " alertBox('Rejected successfully');">Reject</button>
-            </form>
+        <% if (item.mails.pendingFlag===true) { %>
+          <form action="/approve-request" method="post">
+            <input type="text" name="content" value="" placeholder="Enter reason" required />
+            <!-- <input type="hidden" name="id" value="<%=item.mails._id%>" /> -->
+            <!-- add if statement.. -->
+            <input type="hidden" name="id" value="<%=item.mails._id%>" />
+            <input type="hidden" name="email" value="<%=item.mails.toMail%>" />
+            <button type="submit" onclick=" alertBox('Approved successfully')">Approve</button>
+
+          </form>
+
+          <form action="/reject-request" method="post">
+            <input type="text" name="content" value="" placeholder="Enter reason" required />
+            <input type="hidden" name="id" value="<%=item.mails._id%>" />
+            <input type="hidden" name="email" value="<%=item.mails.toMail%>" />
+
+            <button type="submit" onclick=" alertBox('Rejected successfully');">Reject</button>
+          </form>
           <% } %>
 
-          <% if (item.mails.approvedFlag === true) { %>
-            <h1>This request was approved already..</h1>
-          <% } %>
+            <% if (item.mails.approvedFlag===true) { %>
+              <h1>This request was approved already..</h1>
+              <% } %>
 
-          <% if (item.mails.rejectedFlag === true) { %>
-            <h1>This request was rejected already..</h1>
-          <% } %>
-          
+                <% if (item.mails.rejectedFlag===true) { %>
+                  <h1>This request was rejected already..</h1>
+                  <% } %>
 
-          
-          
-          
-         
-          <!-- <form action="/view-particular-request/{$item._id}" method="get"><button type="submit">More details</button></form> -->
-          <!-- Do add api above.. -->
-        
-    <% }); %>
+
+
+
+
+
+                    <!-- <form action="/view-particular-request/{$item._id}" method="get"><button type="submit">More details</button></form> -->
+                    <!-- Do add api above.. -->
+
+                    <% }); %>
 </body>
 
 <script>
   function alertBox(text) {
-   alert(text); 
+    alert(text);
   }
 </script>
-

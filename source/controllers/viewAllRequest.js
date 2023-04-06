@@ -1,24 +1,22 @@
-const items = require("../models/user_model")
-const Detail = items.Detail
-
+const items = require("../models/user_model");
+const Detail = items.Detail;
 
 viewAllRequest = async (req, res) => {
-    const { mail } = req.body;
-    const data = await Detail.aggregate([
-        {
-            $unwind: '$mails'
-        },
-        {
-            $match: {
-                'mails.toMail': mail
-            }
-        }
-    ])
-    // const det = await Detail.findById({'mails._id':id});
-    
-    res.status(200).json({ "message": data });
-}
+  const { mail } = req.body;
+  const data = await Detail.aggregate([
+    {
+      $unwind: "$mails",
+    },
+    {
+      $match: {
+        "mails.toMail": mail,
+      },
+    },
+  ]);
+  // const det = await Detail.findById({'mails._id':id});
 
+  res.status(200).json({ message: data });
+};
 
 // viewParticularRequest = async (req, res) => {
 //     const { mail, id } = req.body;

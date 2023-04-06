@@ -1,93 +1,93 @@
-body{
-  background-color:#018cfe;
+body {
+  background-color: #018cfe;
 }
-h1{
+h1 {
   margin-bottom: 35px;
-    color:  #018cfe;
+  color: #018cfe;
 }
-a{
+a {
   text-decoration: none;
 }
-h5{
+h5 {
   font-size: 1.5rem;
-    color: #018cfe;
+  color: #018cfe;
 }
-h6{
+h6 {
   margin-top: 15px;
-  color: #90CAF9;
+  color: #90caf9;
 }
-hr{
+hr {
   margin-top: -20px;
-  border-style:none;
-  border-top-style:solid;
-  border-color:#90CAF9;
+  border-style: none;
+  border-top-style: solid;
+  border-color: #90caf9;
   border-width: 10px;
   width: 20%;
 }
-span{
-color:#DF2E38;
-margin-bottom: 10px;
-font-size: 1rem;
+span {
+  color: #df2e38;
+  margin-bottom: 10px;
+  font-size: 1rem;
 }
-label
-{
+label {
   margin-top: 25px;
 }
-#loginModule{
+#loginModule {
   justify-content: center;
   background-color: white;
-  text-align:left;
+  text-align: left;
   margin: 80px 150px;
   border-radius: 100px;
-  padding:50px;
+  padding: 50px;
   box-shadow: 10px 10px 10px 10px rgba(0.3, 0.3, 0.3, 0.3);
 }
-#forgotpassModule{
+#forgotpassModule {
   justify-content: center;
   display: none;
   background-color: white;
-  text-align:left;
+  text-align: left;
   margin: 80px 150px;
   border-radius: 100px;
-  padding:50px;
+  padding: 50px;
   box-shadow: 10px 10px 10px 10px rgba(0.3, 0.3, 0.3, 0.3);
 }
-.inp{
+.inp {
   margin-left: -5px;
   margin-top: 2px;
   margin-bottom: 5px;
   height: 40px;
   width: 350px;
   background-color: white;
-  border-radius:40px;
-  color:  #018cfe;
+  border-radius: 40px;
+  color: #018cfe;
   padding: 6px;
   outline: none;
-  border: 3px solid  #90CAF9;
+  border: 3px solid #90caf9;
 }
-.btn-light{
+.btn-light {
   background-color: #018cfe;
-  color:white;
+  color: white;
 }
-.btn-light,.btn-light:hover{
+.btn-light,
+.btn-light:hover {
   padding: 10px 80px;
   text-align: center;
-  border-radius:50px;
+  border-radius: 50px;
 }
-.btn-light:hover{
+.btn-light:hover {
   border-color: #018cfe;
   background-color: white;
-  color:#018cfe;
+  color: #018cfe;
 }
-.fpform{
-margin-left: 50px;
-margin-top: 80px;
+.fpform {
+  margin-left: 50px;
+  margin-top: 80px;
 }
-.row{
+.row {
   margin-left: 50px;
 }
-.verify{
-    margin-top: 10px;
+.verify {
+  margin-top: 10px;
 }
 
 /* color #90CAF9 #018cfe */

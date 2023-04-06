@@ -24,52 +24,53 @@
 <body>
   <h1>Particular Request</h1>
   <% data.forEach((item,idx)=> { %>
-    
-          <h4>Priorty:High</h4>
-          <h4>To mail :-<%=item.mails.toMail%>
-          </h4>
-          <h4>Name:-<%=item.name%>
-          </h4>
-          <h6>Rollno:- to do </h6>
-          <!-- If possible add email in this.. -->
-        
-          <h4>Date:-<%=item.mails.sendDateTime.toISOString().split( "T" )[0]%>
-          </h4>
-          <h4>Time:-<%=item.mails.sendDateTime.toISOString().split( "T" )[1].substring(0,5)%>
-       
-          <h4>
-            <%=item.mails.content%>
-          </h4>
-          <h4>
-            <%=item.mails.subject%>
-          </h4>
-          <% if (item.mails.approvedFlag === true) { %>
-            <h1>Mail approved</h1>
-            <h2>content : <%=item.mails.approverContent%></h2>
+
+    <h4>Priorty:High</h4>
+    <h4>To mail :-<%=item.mails.toMail%>
+    </h4>
+    <h4>Name:-<%=item.name%>
+    </h4>
+    <h6>Rollno:- to do </h6>
+    <!-- If possible add email in this.. -->
+
+    <h4>Date:-<%=item.mails.sendDateTime.toISOString().split( "T" )[0]%>
+    </h4>
+    <h4>Time:-<%=item.mails.sendDateTime.toISOString().split( "T" )[1].substring(0,5)%>
+
+        <h4>
+          <%=item.mails.content%>
+        </h4>
+        <h4>
+          <%=item.mails.subject%>
+        </h4>
+        <% if (item.mails.approvedFlag===true) { %>
+          <h1>Mail approved</h1>
+          <h2>content : <%=item.mails.approverContent%>
+          </h2>
           <% } %>
 
-          <% if (item.mails.rejectedFlag === true) { %>
-            <h1>Mail rejected</h1>
-            <h2>content : <%=item.mails.approverContent%></h2>
-          <% } %>
-          <% if (item.mails.pendingFlag === true) { %>
-            <h1>Mail in pending state</h1>
-          <% } %>
-          
+            <% if (item.mails.rejectedFlag===true) { %>
+              <h1>Mail rejected</h1>
+              <h2>content : <%=item.mails.approverContent%>
+              </h2>
+              <% } %>
+                <% if (item.mails.pendingFlag===true) { %>
+                  <h1>Mail in pending state</h1>
+                  <% } %>
 
-          
-          
-          
-         
-          <!-- <form action="/view-particular-request/{$item._id}" method="get"><button type="submit">More details</button></form> -->
-          <!-- Do add api above.. -->
-        
-    <% }); %>
+
+
+
+
+
+                    <!-- <form action="/view-particular-request/{$item._id}" method="get"><button type="submit">More details</button></form> -->
+                    <!-- Do add api above.. -->
+
+                    <% }); %>
 </body>
 
 <script>
   function alertBox(text) {
-   alert(text); 
+    alert(text);
   }
 </script>
-

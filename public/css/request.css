@@ -1,109 +1,110 @@
-
-h2{
+h2 {
   font-size: 2.5rem;
   color: #018cfe;
 }
-hr{
+hr {
   margin-top: -20px;
-  border-style:none;
-  border-top-style:solid;
-  border-color:#90CAF9;
+  border-style: none;
+  border-top-style: solid;
+  border-color: #90caf9;
   border-width: 20px;
   width: 28%;
 }
-label{
+label {
   margin-left: -80px;
   margin-right: 10px;
   font-size: 1.5rem;
-  color: #018cfe ;
+  color: #018cfe;
 }
-h1,h5{
-  color:white;
+h1,
+h5 {
+  color: white;
 }
-.title{
+.title {
   background-color: #018cfe;
-  margin:50px 50px 10px 50px;
-  padding:20px 0;
+  margin: 50px 50px 10px 50px;
+  padding: 20px 0;
 }
-.head{
-  margin-left:50px;
+.head {
+  margin-left: 50px;
 }
-.navbar{
+.navbar {
   padding-bottom: -100px;
   margin: 0 50px 0 50px;
   background-color: #018cfe;
 }
-.nav-item
-{ margin-left: 120px;
+.nav-item {
+  margin-left: 120px;
   margin-right: 120px;
   text-align: center;
 }
-.navbar-expand-lg ,.navbar-light {
-    border-radius:50px;
+.navbar-expand-lg,
+.navbar-light {
+  border-radius: 50px;
   background-color: #018cfe;
 }
 
-.rw1{
+.rw1 {
   margin: 50px;
 }
-.rw2{
+.rw2 {
   margin-left: 200px;
 }
-.btn-light{
+.btn-light {
   height: 42px;
   margin-top: -6px;
   background-color: #018cfe;
-  color:white;
+  color: white;
 }
-.btn-light:hover{
+.btn-light:hover {
   background-color: white;
-  color:#018cfe;
+  color: #018cfe;
 }
-.inp{
+.inp {
   height: 40px;
   width: 250px;
   background-color: white;
-  color:  #018cfe;
+  color: #018cfe;
   padding: 6px;
   outline: none;
-  border: 3px solid  #018cfe;
+  border: 3px solid #018cfe;
 }
-.filter{
+.filter {
   margin-right: 50px;
   height: 40px;
   width: 150px;
   background-color: white;
-  color:#018cfe;
+  color: #018cfe;
   padding: 6px;
   outline: none;
-  border: 3px solid  #018cfe;
+  border: 3px solid #018cfe;
 }
-.design{
-  background-color:#018cfe;
+.design {
+  background-color: #018cfe;
   padding: 50px;
   margin: 0 50px;
-  border-color:#018cfe;
+  border-color: #018cfe;
   border-top-left-radius: 100%;
   border-top-right-radius: 100%;
 }
-.requestModule{
-  overflow:scroll;
-    margin: 0 50px;
-    background-color:#018cfe;
-    padding: 25px;
+.requestModule {
+  overflow: scroll;
+  margin: 0 50px;
+  background-color: #018cfe;
+  padding: 25px;
 }
-.priorty-high{
-  margin:10px 150px 10px 125px;
+.priorty-high {
+  margin: 10px 150px 10px 125px;
   padding: 20px;
   align-items: center;
-  background-color:red;
+  background-color: red;
   border-radius: 100%;
 }
-.request{
+.request {
   text-align: center;
-  background-color:white;
-  margin:10px 0 25px;
-  padding:10px;
+  background-color: white;
+  margin: 10px 0 25px;
+  padding: 10px;
   border-radius: 50px;
-    box-shadow: 10px 10px 10px 10px rgba(0.3, 0.3, 0.3, 0.3);
+  box-shadow: 10px 10px 10px 10px rgba(0.3, 0.3, 0.3, 0.3);
 }

@@ -75,13 +75,13 @@
           <form action="/view-request-user" method="post">
             <label>Filter</label>
             <select class="filter" id="filter" name="filter">
-              <option value="all" >All</option>
+              <option value="all">All</option>
               <option value="pending">Pending</option>
               <option value="accepted">Accepted</option>
               <option value="rejected">Rejected</option>
             </select>
-            <input id="email"  type="hidden" name="email" value="<%=email%>" />
-            <input id="drop-val"  type="hidden" name="dropVal" value="" />
+            <input id="email" type="hidden" name="email" value="<%=email%>" />
+            <input id="drop-val" type="hidden" name="dropVal" value="" />
             <button type="submit" class="btn  btn-light" onclick="getOption()">Referesh data</button>
           </form>
         </div>
@@ -92,7 +92,9 @@
 
   </div>
 
-  <h1><%=email%></h1>
+  <h1>
+    <%=email%>
+  </h1>
   <div class="requestModule">
     <% data.forEach((item,idx)=> { %>
       <div class="request">
@@ -101,26 +103,33 @@
             <h4>Priorty:High</h4>
           </div>
           <div class="col-lg-3">
-            <h4>Name:-<%=item.name%></h4>
-            <h4>To :-<%=item.mails.toMail%></h4>
-            <h6>Rollno:-<%=item.email%></h6>
+            <h4>Name:-<%=item.name%>
+            </h4>
+            <h4>To :-<%=item.mails.toMail%>
+            </h4>
+            <h6>Rollno:-<%=item.email%>
+            </h6>
             <!-- If possible add email in this.. -->
           </div>
           <div class="col-lg-3">
-            <h4>Date:-<%=item.mails.sendDateTime.toISOString().split( "T" )[0]%></h4>
-            <h4>Time:-<%=item.mails.sendDateTime.toISOString().split( "T" )[1].substring(0,5)%></h4>
-            <% if (item.mails.read === true) { %>
+            <h4>Date:-<%=item.mails.sendDateTime.toISOString().split( "T" )[0]%>
+            </h4>
+            <h4>Time:-<%=item.mails.sendDateTime.toISOString().split( "T" )[1].substring(0,5)%>
+            </h4>
+            <% if (item.mails.read===true) { %>
               <h4>Read by Receptient</h4>
-             <% } %>
-             <% if (item.mails.read === false) { %>
-              <h4>Not Read by Receptient</h4>
-             <% } %>
+              <% } %>
+                <% if (item.mails.read===false) { %>
+                  <h4>Not Read by Receptient</h4>
+                  <% } %>
           </div>
           <div class="col-lg-3">
-            <h4><%=item.mails.content%></h4>
+            <h4>
+              <%=item.mails.content%>
+            </h4>
             <form action="/view-particular-request-user" method="post">
               <input type="hidden" name="id" value="<%=item.mails._id%>" />
-              <input type="hidden" name="email" value="<%=item.email%>"/>
+              <input type="hidden" name="email" value="<%=item.email%>" />
               <button type="submit">More details</button>
             </form>
             <!-- Do add api above.. -->
@@ -136,11 +145,11 @@
 
 <script>
   function getOption() {
-        selectElement = document.querySelector('#filter');
-        output = selectElement.value;
-        console.log("SElECted val" , output);
-        document.getElementById("drop-val").value = output;
-        
-        console.log(document.getElementById("drop-val").value);
-    }
+    selectElement = document.querySelector('#filter');
+    output = selectElement.value;
+    console.log("SElECted val", output);
+    document.getElementById("drop-val").value = output;
+
+    console.log(document.getElementById("drop-val").value);
+  }
 </script>
