@@ -240,8 +240,12 @@
   font-size: 26px;
   font-weight: 600;
 }
-button :hover{
+button :hover {
   background-color: white;
+}
+
+.ir:hover{
+  background-color: white !important;
 }
 @media (max-width: 400px) {
   .sidebar.close .nav-links li .sub-menu {
