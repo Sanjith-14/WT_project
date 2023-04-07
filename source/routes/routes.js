@@ -26,6 +26,8 @@ const viewRequest = require("../controllers/viewAllRequest");
 
 const viewRequestAdmin = require("../controllers/viewRequestAdmin");
 
+const viewReadUser = require("../controllers/ViewReadUser")
+
 router.get("/", (req, res) => {
   try {
     console.log("Welcome to Request Management System - Login");
@@ -66,6 +68,10 @@ router.post("/view-request-user", threeRequests.viewRequestUser);
 router.post(
   "/view-particular-request-user",
   threeRequests.viewParticularRequestUser
+);
+
+router.post(
+  "/view-read-user",viewReadUser
 );
 
 module.exports = router;

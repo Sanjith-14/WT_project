@@ -55,8 +55,24 @@
       <ul class="nav-links">
         <li>
           <a href="#">
-            <i class="bx bxs-pyramid"></i>
-            <span class="link_name">All mails</span>
+            <form action="/view-request-user" method="post">
+              <input type="hidden" value="<%=email%>" name="email" />
+              <input type="hidden" value="all" name="dropVal" />
+              <button
+                style="
+                  width: 300px;
+                  background-color: white;
+                  color: #77619e;
+                  outline: none;
+                  border: none;
+                "
+                value="pending"
+                class="link_name"
+              >
+                <i class="bx bxs-pyramid"></i>All
+                mails&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </button>
+            </form>
           </a>
           <ul class="sub-menu blank">
             <li><a class="link_name" href="#">All mails</a></li>
@@ -129,6 +145,9 @@
           </ul>
         </li>
 
+
+
+
         <li>
           <div class="icon-link">
             <a href="#">
@@ -140,34 +159,48 @@
           <ul class="sub-menu">
             <li><a class="link_name" href="#">Read By</a></li>
             <li>
-              <button
-                style="
-                  background-color: white;
-                  color: #77619e;
-                  outline: none;
-                  border: none;
-                  margin-bottom: 15px;
-                "
-                value="approved"
-              >
-                Read mails
-              </button>
+              <form action="/view-read-user" method="post">
+                <input type="hidden" value="<%=email%>" name="email" />
+                <input type="hidden" value="read" name="choice" />
+                <button
+                  style="
+                    background-color: white;
+                    color: #77619e;
+                    outline: none;
+                    border: none;
+                    margin-bottom: 15px;
+                  "
+                  value="approved"
+                >
+                  Read mails
+                </button>
+              </form>
             </li>
             <li>
-              <button
-                style="
-                  background-color: white;
-                  color: #77619e;
-                  outline: none;
-                  border: none;
-                "
-                value="pending"
-              >
-                UnRead mails
-              </button>
+              <form action="/view-read-user" method="post">
+                <input type="hidden" value="<%=email%>" name="email" />
+                <input type="hidden" value="notRead" name="choice" />
+                <button
+                  style="
+                    background-color: white;
+                    color: #77619e;
+                    outline: none;
+                    border: none;
+                  "
+                  value="rejected"
+                >
+                  Unread mails
+                </button>
+              </form>
             </li>
           </ul>
         </li>
+
+        
+
+
+
+
 
         <li>
           <a href="/">
@@ -205,7 +238,7 @@
       <% data.forEach((item,idx)=> { %>
 
       <form
-        action="/view-particular-request"
+        action="/view-particular-request-user"
         method="post"
         style="text-decoration: none"
       >

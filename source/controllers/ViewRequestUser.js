@@ -29,7 +29,7 @@ const viewRequestUser = async (req, res) => {
         },
       },
     ]);
-  } else if (dropVal === "accepted") {
+  } else if (dropVal === "approved") {
     data = await Detail.aggregate([
       {
         $unwind: "$mails",
