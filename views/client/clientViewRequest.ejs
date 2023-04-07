@@ -42,7 +42,7 @@
     />
     <link rel="stylesheet" href="css/request.css" />
     <link rel="stylesheet" href="css/card.css" />
-    <title>User</title>
+    <title>User Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
@@ -70,8 +70,8 @@
                 class="link_name"
               >
                 <i class="bx bxs-pyramid"></i>All
-                mails&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </button>
+                Requests &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
             </form>
           </a>
           <ul class="sub-menu blank">
@@ -103,7 +103,7 @@
                   "
                   value="approved"
                 >
-                  Approved mails
+                  Approved Requests
                 </button>
               </form>
             </li>
@@ -121,7 +121,7 @@
                   "
                   value="rejected"
                 >
-                  Rejected mails
+                  Rejected Requests
                 </button>
               </form>
             </li>
@@ -138,26 +138,23 @@
                   "
                   value="pending"
                 >
-                  Pending mails
+                  Pending Requests
                 </button>
               </form>
             </li>
           </ul>
         </li>
 
-
-
-
         <li>
           <div class="icon-link">
             <a href="#">
               <i class="bx bx-book-alt"></i>
-              <span class="link_name">Read by</span>
+              <span class="link_name">View Status</span>
             </a>
             <i class="bx bxs-chevron-down arrow"></i>
           </div>
           <ul class="sub-menu">
-            <li><a class="link_name" href="#">Read By</a></li>
+            <li><a class="link_name" href="#">View Status</a></li>
             <li>
               <form action="/view-read-user" method="post">
                 <input type="hidden" value="<%=email%>" name="email" />
@@ -172,7 +169,7 @@
                   "
                   value="approved"
                 >
-                  Read mails
+                  Read Requests
                 </button>
               </form>
             </li>
@@ -189,18 +186,12 @@
                   "
                   value="rejected"
                 >
-                  Unread mails
+                  Unread Requests
                 </button>
               </form>
             </li>
           </ul>
         </li>
-
-        
-
-
-
-
 
         <li>
           <a href="/">
