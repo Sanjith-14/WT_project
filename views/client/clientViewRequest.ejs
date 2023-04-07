@@ -194,6 +194,30 @@
         </li>
 
         <li>
+          <a href="#">
+            <form action="/new-request" method="post">
+              <input type="hidden" value="<%=email%>" name="email" />
+              <button
+                style="
+                  width: 300px;
+                  background-color: white;
+                  color: #77619e;
+                  outline: none;
+                  border: none;
+                "
+                value="pending"
+                class="link_name"
+              >
+              <i class='bx bx-message-add'></i>Add Request&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </button>
+            </form>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Add Request</a></li>
+          </ul>
+        </li>
+
+        <li>
           <a href="/">
             <i class="bx bx-log-out"></i>
             <span class="link_name">Logout</span>

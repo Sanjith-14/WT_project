@@ -5,6 +5,8 @@ approveRequest = async (req, res) => {
   const id = req.body.id;
   const email = req.body.email;
   const content = req.body.content;
+  const keyval = req.body.keyval;
+  console.log("KEYVAL",keyval);
   console.log("APPROVE", id, email, content);
   // use arrayfilters..
   const detail = await Detail.updateMany(
