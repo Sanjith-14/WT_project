@@ -2,8 +2,8 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+  <meta charset="utf-8" />
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
@@ -14,145 +14,139 @@
     integrity="sha384-ODmDIVzN+pFdexxHEHFBQh5/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
     crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/request.css">
-  <title>NECBDC</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+  <link rel="stylesheet" href="css/request.css" />
+  <title>User</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
-  <div class="title">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="head">
-          <h1>Request Tracking System</h1>
-          <h5>Under Kumaraguru College of Technology , CBE</h5>
-        </div>
-      </div>
+  
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class="bx bxs-pyramid"></i>
+      <span class="logo_name">RQ 24/7</span>
     </div>
-  </div>
-  <nav class="navbar taskbar">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg ">
-        <a class="navbar-brand" href="home.ejs">
-          <h5>Home</h5>
+    <ul class="nav-links">
+      <li>
+        <a href="#">
+          <i class="bx bxs-pyramid"></i>
+          <span class="link_name">All mails</span>
         </a>
-      </nav>
-      <nav class="navbar navbar-expand-lg ">
-        <a class="navbar-brand" href="profile.ejs">
-          <h5>Profile</h5>
-        </a>
-      </nav>
-      <nav class="navbar navbar-expand-lg ">
-        <a class="navbar-brand" href="request.ejs">
-          <h5>Request</h5>
-        </a>
-      </nav>
-      <nav class="navbar navbar-expand-lg ">
-        <form action="/new-request" method="post">
-          <input id="email" type="hidden" name="email" value="<%=email%>" />
-          
-            <button type="submit">New REquest</button>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">All mails</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <div class="icon-link">
+          <a href="#">
+            <i class="bx bx-collection"></i>
+            <span class="link_name">Filter by</span>
           </a>
-        </form>
-      </nav>
-      <nav class="navbar navbar-expand-lg ">
-        <a class="navbar-brand" href="/">
-          <!-- USE ONCLICK FUNCTION-->
-          <h5>Logout</h5>
+          <i class="bx bxs-chevron-down arrow"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Filter By</a></li>
+          <li><button style="background-color: white;color: #77619e;outline: none;border: none;margin-bottom: 15px;" value="approved">Approved mails</button></li>
+          <li><button style="background-color: white;color: #77619e;outline: none;border: none;margin-bottom: 15px;" value="rejected">Rejected mails</button></li>
+          <li><button style="background-color: white;color: #77619e;outline: none;border: none;" value="pending">Pending mails</button></li>
+        </ul>
+      </li>
+
+      <li>
+        <div class="icon-link">
+          <a href="#">
+            <i class='bx bx-book-alt'></i>
+            <span class="link_name">Read by</span>
+          </a>
+          <i class="bx bxs-chevron-down arrow"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Read By</a></li>
+          <li><button style="background-color: white;color: #77619e;outline: none;border: none;margin-bottom: 15px;" value="approved">Read mails</button></li>
+          <li><button style="background-color: white;color: #77619e;outline: none;border: none;" value="pending">UnRead mails</button></li>
+        </ul>
+      </li>
+      
+
+
+      <li>
+        <a href="/">
+          <i class="bx bx-log-out"></i>
+          <span class="link_name">Logout</span>
         </a>
-      </nav>
-    </div>
-  </nav>
-  <div class="row rw1">
-    <div class="col-lg-6">
-      <h2>Request List</h2>
-      <br />
-      <hr />
-    </div>
-    <div class="col-lg-6">
-      <div class="row rw2 ">
-        <div class="col-lg-12">
-          <form action="/view-request-user" method="post">
-            <label>Filter</label>
-            <select class="filter" id="filter" name="filter">
-              <option value="all">All</option>
-              <option value="pending">Pending</option>
-              <option value="accepted">Accepted</option>
-              <option value="rejected">Rejected</option>
-            </select>
-            <input id="email" type="hidden" name="email" value="<%=email%>" />
-            <input id="drop-val" type="hidden" name="dropVal" value="" />
-            <button type="submit" class="btn  btn-light" onclick="getOption()">Referesh data</button>
-          </form>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="/">Logout</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <img
+              src="http://www.goodmorningimagesdownload.com/wp-content/uploads/2021/12/Best-Quality-Profile-Images-Pic-Download-2023.jpg"
+              alt="profileImg" />
+          </div>
+          <div style="padding: 30px 0" class="name-job">
+            <div class="profile_name">User</div>
+            <div style="font-size: 15px" class="profile_name">
+              <%=email%>
+            </div>
+          </div>
+          <a href="/"><i class="bx bx-log-out"></i></a>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="design">
-
+      </li>
+    </ul>
   </div>
 
-  <h1>
-    <%=email%>
-  </h1>
-  <div class="requestModule">
-    <% data.forEach((item,idx)=> { %>
-      <div class="request">
-        <div class="row r1">
-          <div class="col-lg-3">
-            <h4>Priorty:High</h4>
-          </div>
-          <div class="col-lg-3">
-            <h4>Name:-<%=item.name%>
-            </h4>
-            <h4>To :-<%=item.mails.toMail%>
-            </h4>
-            <h6>Rollno:-<%=item.email%>
-            </h6>
-            <!-- If possible add email in this.. -->
-          </div>
-          <div class="col-lg-3">
-            <h4>Date:-<%=item.mails.sendDateTime.toISOString().split( "T" )[0]%>
-            </h4>
-            <h4>Time:-<%=item.mails.sendDateTime.toISOString().split( "T" )[1].substring(0,5)%>
-            </h4>
-            <% if (item.mails.read===true) { %>
-              <h4>Read by Receptient</h4>
-              <% } %>
-                <% if (item.mails.read===false) { %>
-                  <h4>Not Read by Receptient</h4>
-                  <% } %>
-          </div>
-          <div class="col-lg-3">
-            <h4>
-              <%=item.mails.content%>
-            </h4>
-            <form action="/view-particular-request-user" method="post">
-              <input type="hidden" name="id" value="<%=item.mails._id%>" />
-              <input type="hidden" name="email" value="<%=item.email%>" />
-              <button type="submit">More details</button>
-            </form>
-            <!-- Do add api above.. -->
-          </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class="bx bx-menu"></i>
+      <span class="text">User Dashboard</span>
+    </div>
+
+    <!-- <div class="home-content"> -->
+      <% data.forEach((item,idx)=> { %>
+        <div class="home-content">
+              <h4>Priorty:<%=item.mails.priority%></h4>
+              <h4>Name:-<%=item.name%>
+              </h4>
+              <h4>To :-<%=item.mails.toMail%>
+              </h4>
+              <h6>Rollno:-<%=item.email%>
+              </h6>
+              <!-- If possible add email in this.. -->
+            
+              <h4>Date:-<%=item.mails.sendDateTime.toISOString().split( "T" )[0]%>
+              </h4>
+              <h4>Time:-<%=item.mails.sendDateTime.toISOString().split( "T" )[1].substring(0,5)%>
+              </h4>
+              <% if (item.mails.read===true) { %>
+                <h4>Read by Receptient</h4>
+                <% } %>
+                  <% if (item.mails.read===false) { %>
+                    <h4>Not Read by Receptient</h4>
+                    <% } %>
+            
+              <h4>
+                <%=item.mails.content%>
+              </h4>
+              <form action="/view-particular-request-user" method="post">
+                <input type="hidden" name="id" value="<%=item.mails._id%>" />
+                <input type="hidden" name="email" value="<%=item.email%>" />
+                <button type="submit">More details</button>
+              </form>
+              <!-- Do add api above.. -->
         </div>
-      </div>
-      <% }); %>
-  </div>
-  <script src="js/main.js" charset="utf-8"></script>
+        <% }); %>
+        <!-- </div> -->
+  </section>
+
+  <script src="js/NavBar.js" charset="utf-8"></script>
 </body>
 
 </html>
-
-<script>
-  function getOption() {
-    selectElement = document.querySelector('#filter');
-    output = selectElement.value;
-    console.log("SElECted val", output);
-    document.getElementById("drop-val").value = output;
-
-    console.log(document.getElementById("drop-val").value);
-  }
-</script>

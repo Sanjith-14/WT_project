@@ -33,8 +33,24 @@
     <ul class="nav-links">
       <li>
         <a href="#">
-          <i class="bx bxs-pyramid"></i>
-          <span class="link_name">All mails</span>
+          <form action="/view-request-admin" method="post">
+            <input type="hidden" value="<%=email%>" name="email" />
+            <input type="hidden" value="all" name="dropVal" />
+            <button
+              style="
+                width: 300px;
+                background-color: white;
+                color: #77619e;
+                outline: none;
+                border: none;
+              "
+              value="pending"
+              class="link_name"
+            >
+              <i class="bx bxs-pyramid"></i>All
+              mails&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </button>
+          </form>
         </a>
         <ul class="sub-menu blank">
           <li><a class="link_name" href="#">All mails</a></li>
@@ -50,19 +66,37 @@
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">Filter By</a></li>
-          <li><a href="#">Approved mails</a></li>
-          <li><a href="#">Rejected mails</a></li>
-          <li><a href="#">Pending mails</a></li>
+          <li>
+            <form action="/view-request-admin" method="post">
+              <input type="hidden" value="<%=email%>" name="email">
+              <input type="hidden" value="approved" name="dropVal">
+              <button style="background-color: white;color: #77619e;outline: none;border: none;margin-bottom: 15px;" value="approved">Approved mails</button>
+            </form>
+          </li>
+          <li>
+            <form action="/view-request-admin" method="post">
+              <input type="hidden" value="<%=email%>" name="email">
+              <input type="hidden" value="rejected" name="dropVal">
+              <button style="background-color: white;color: #77619e;outline: none;border: none;margin-bottom: 15px;" value="rejected">Rejected mails</button>
+            </form>
+          </li>
+          <li>
+            <form action="/view-request-admin" method="post">
+              <input type="hidden" value="<%=email%>" name="email">
+              <input type="hidden" value="pending" name="dropVal">
+              <button style="background-color: white;color: #77619e;outline: none;border: none;" value="pending">Pending mails</button>
+            </form>
+            </li>
         </ul>
       </li>
 
       <li>
-        <a href="#">
+        <a href="/">
           <i class="bx bx-log-out"></i>
           <span class="link_name">Logout</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Logout</a></li>
+          <li><a class="link_name" href="/">Logout</a></li>
         </ul>
       </li>
       <li>
@@ -70,15 +104,16 @@
           <div class="profile-content">
             <img
               src="http://www.goodmorningimagesdownload.com/wp-content/uploads/2021/12/Best-Quality-Profile-Images-Pic-Download-2023.jpg"
-              alt="profileImg" />
+              alt="profileImg"
+            />
           </div>
           <div style="padding: 30px 0" class="name-job">
             <div class="profile_name">Admin</div>
             <div style="font-size: 15px" class="profile_name">
-              <%=data[0].mails.toMail%>
+              <%=email%>
             </div>
           </div>
-          <i class="bx bx-log-out"></i>
+          <a href="/"><i class="bx bx-log-out"></i></a>
         </div>
       </li>
     </ul>
@@ -148,4 +183,4 @@
   </section>
 
 </body>
-<script src="js/adminNav.js" charset="utf-8"></script>
+<script src="js/NavBar.js" charset="utf-8"></script>

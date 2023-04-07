@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&family=Poppins:ital@1&display=swap");
-
-/* Side bar starts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 
 * {
   margin: 0;
@@ -215,7 +213,7 @@
 .home-section {
   position: relative;
   background: #e4e9f7;
-  height: 100vh;
+  min-height: 100vh;
   left: 300px;
   width: calc(100% - 300px);
   transition: all 0.5s ease;
@@ -241,6 +239,9 @@
 .home-section .home-content .text {
   font-size: 26px;
   font-weight: 600;
+}
+button :hover{
+  background-color: white;
 }
 @media (max-width: 400px) {
   .sidebar.close .nav-links li .sub-menu {

@@ -26,3 +26,13 @@ function getOption() {
 function alertBox(text) {
   alert(text);
 }
+
+// For clientViewRequest..
+function getOption() {
+  selectElement = document.querySelector('#filter');
+  output = selectElement.value;
+  console.log("SElECted val", output);
+  document.getElementById("drop-val").value = output;
+
+  console.log(document.getElementById("drop-val").value);
+}

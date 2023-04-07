@@ -26,9 +26,9 @@ viewParticularRequest = async (req, res) => {
     },
   ]);
 
-  // console.log(data);
+  console.log(data);
 
-  res.render("admin/adminViewParticularRequest.ejs", { data: data });
+  res.render("admin/adminViewParticularRequest.ejs", { data: data , email:email });
 };
 
 module.exports = viewParticularRequest;

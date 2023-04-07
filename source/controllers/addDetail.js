@@ -3,7 +3,7 @@ const Detail = items.Detail;
 
 const addDetail = async (req, res) => {
   try {
-    const { email, toMail, subject, content } = req.body;
+    const { email, toMail,priority, subject, content } = req.body;
     console.log(email);
     const detail = await Detail.updateOne(
       { email: email },
@@ -11,6 +11,7 @@ const addDetail = async (req, res) => {
         $push: {
           mails: {
             toMail: toMail,
+            priority:priority,
             sendDateTime: new Date(),
             approverContent: "",
             content: content,
@@ -20,7 +21,7 @@ const addDetail = async (req, res) => {
       }
     );
 
-    // res.status(200).json({ message: "Added Detail" });
+    res.status(200).json({ message: "Added Detail" });
     
   } catch (error) {
     console.log("Error in add Detail");
