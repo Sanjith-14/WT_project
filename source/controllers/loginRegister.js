@@ -55,6 +55,7 @@ const LoginUser = async (req, res) => {
               email: email,
             },
           },
+          {$sort: {"mails.sendDateTime": -1}}
         ]);
 
         res.render("client/clientViewRequest.ejs", {
@@ -71,6 +72,7 @@ const LoginUser = async (req, res) => {
               "mails.toMail": email,
             },
           },
+          {$sort: {"mails.sendDateTime": -1}}
         ]);
         res.render("admin/adminViewRequest.ejs", { data: data , email:email });
       }

@@ -15,6 +15,7 @@ const viewReadUser = async (req, res) => {
         email: email,
       },
     },
+    {$sort: {"mails.sendDateTime": -1}}
   ]);
   if (choice === "read") {
     data = await Detail.aggregate([
@@ -27,6 +28,7 @@ const viewReadUser = async (req, res) => {
           "mails.read":true
         },
       },
+      {$sort: {"mails.sendDateTime": -1}}
     ]);
   } else if (choice === "notRead") {
     data = await Detail.aggregate([
@@ -39,6 +41,7 @@ const viewReadUser = async (req, res) => {
           "mails.read": false
         },
       },
+      {$sort: {"mails.sendDateTime": -1}}
     ]);
   }
   else {
@@ -51,6 +54,7 @@ const viewReadUser = async (req, res) => {
           email: email,
         },
       },
+      {$sort: {"mails.sendDateTime": -1}}
     ]);
   }
   res.render("client/clientViewRequest.ejs", { data: data, email: email });

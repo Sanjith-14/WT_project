@@ -1,5 +1,6 @@
 const items = require("../models/user_model");
 const Detail = items.Detail;
+const moment = require('moment');
 
 const addDetail = async (req, res) => {
   try {
@@ -12,7 +13,7 @@ const addDetail = async (req, res) => {
           mails: {
             toMail: toMail,
             priority:priority,
-            sendDateTime: new Date(),
+            sendDateTime: moment().format('YYYY-MM-DD HH:mm:ss'),
             approverContent: "",
             content: content,
             subject: subject,

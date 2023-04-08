@@ -15,6 +15,7 @@ const viewRequestUser = async (req, res) => {
         email: email,
       },
     },
+    {$sort: {"mails.sendDateTime": -1}}
   ]);
   if (dropVal === "pending") {
     data = await Detail.aggregate([
@@ -28,6 +29,7 @@ const viewRequestUser = async (req, res) => {
           "mails.rejectedFlag": false,
         },
       },
+      {$sort: {"mails.sendDateTime": -1}}
     ]);
   } else if (dropVal === "approved") {
     data = await Detail.aggregate([
@@ -42,6 +44,7 @@ const viewRequestUser = async (req, res) => {
           "mails.pendingFlag": false,
         },
       },
+      {$sort: {"mails.sendDateTime": -1}}
     ]);
   } else if (dropVal === "rejected") {
     data = await Detail.aggregate([
@@ -56,6 +59,7 @@ const viewRequestUser = async (req, res) => {
           "mails.pendingFlag": false,
         },
       },
+      {$sort: {"mails.sendDateTime": -1}}
     ]);
   } else {
     data = await Detail.aggregate([
@@ -67,6 +71,7 @@ const viewRequestUser = async (req, res) => {
           email: email,
         },
       },
+      {$sort: {"mails.sendDateTime": -1}}
     ]);
   }
   res.render("client/clientViewRequest.ejs", { data: data, email: email });

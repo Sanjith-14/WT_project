@@ -12,6 +12,7 @@ viewAllRequest = async (req, res) => {
         "mails.toMail": mail,
       },
     },
+    {$sort: {"mails.sendDateTime": -1}}
   ]);
   // const det = await Detail.findById({'mails._id':id});
 

@@ -51,7 +51,7 @@
           </form>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">All mails</a></li>
+          <li><a class="link_name" href="#">All Requests</a></li>
         </ul>
       </li>
 
@@ -233,9 +233,10 @@
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-link"></i></span>
                   <input name="toMail" placeholder="Mail Address" class="form-control" type="email" id="toEmail" />
-                  <span class="error" id="toEmailError"></span>
+                  
                 </div>
               </div>
+              <span class="error" id="toEmailError"></span>
             </div>
 
 
@@ -270,9 +271,9 @@
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
                   <input class="form-control" name="subject" placeholder="Hardware - reg" id="subject"></input>
-                  <span class="error" id="subjectError"></span>
                 </div>
               </div>
+              <span class="error" id="subjectError"></span>
             </div>
 
             <div class="form-group">
@@ -283,9 +284,9 @@
                   <!-- For passing value to ejs , use input hidden -->
                   <textarea id="content" class="form-control" name="content" placeholder="Compose content"
                     rows="6"></textarea>
-                  <span class="error" id="contentError"></span>
                 </div>
               </div>
+              <span class="error" id="contentError"></span>
             </div>
             <!-- submit -->
             <button class="btn btn-light" style="margin-left: 10%;margin-top: 30px;font-size: 20px;" type="submit"

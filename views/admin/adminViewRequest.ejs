@@ -165,6 +165,13 @@
       <i class="bx bx-menu"></i>
       <span class="text">Admin Dashboard</span>
     </div>
+
+    <% if (data.length === 0) { %>
+      <img style="object-fit: contain;height: 80vh;"
+        src="images/NoMessages.png"/>
+
+      <% } %> 
+
     <% data.forEach((item,idx)=> { %>
       <form action="/view-particular-request" method="post" style="text-decoration: none">
         <input type="hidden" value="<%=item.mails._id%>" name="id" />

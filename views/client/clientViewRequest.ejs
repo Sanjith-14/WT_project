@@ -250,6 +250,13 @@
         <span class="text">User Requests</span>
       </div>
 
+      <% if (data.length === 0) { %>
+        <img style="object-fit: contain;height: 80vh;"
+          src="images/NoMessages.png"/>
+
+        <% } %> 
+      
+
       <% data.forEach((item,idx)=> { %>
 
       <form

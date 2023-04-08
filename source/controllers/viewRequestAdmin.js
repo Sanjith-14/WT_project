@@ -14,6 +14,7 @@ const viewRequestAdmin = async (req, res) => {
         "mails.toMail": email,
       },
     },
+    {$sort: {"mails.sendDateTime": -1}}
   ]);
 
   if (dropVal === "pending") {
@@ -27,6 +28,7 @@ const viewRequestAdmin = async (req, res) => {
           "mails.pendingFlag": true,
         },
       },
+      {$sort: {"mails.sendDateTime": -1}}
     ]);
   } else if (dropVal === "approved") {
     data = await Detail.aggregate([
@@ -39,6 +41,7 @@ const viewRequestAdmin = async (req, res) => {
           "mails.approvedFlag": true,
         },
       },
+      {$sort: {"mails.sendDateTime": -1}}
     ]);
   } else if (dropVal === "rejected") {
     data = await Detail.aggregate([
@@ -51,6 +54,7 @@ const viewRequestAdmin = async (req, res) => {
           "mails.rejectedFlag": true,
         },
       },
+      {$sort: {"mails.sendDateTime": -1}}
     ]);
   } else {
     data = await Detail.aggregate([
@@ -62,6 +66,7 @@ const viewRequestAdmin = async (req, res) => {
           "mails.toMail": email,
         },
       },
+      {$sort: {"mails.sendDateTime": -1}}
     ]);
   }
 
