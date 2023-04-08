@@ -60,19 +60,19 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="fpform">
-          <form class="forgotForm">
+          <form id="fpForm">
             <h1>Forgot password</h1>
             <hr />
             <label for="email">
               <h5>E-mail</h5>
             </label>
             <br />
-            <input id="fpemail" class="inp" type="text" name="email">
+            <input id="fpEmail" class="inp" type="email" name="email">
             <br />
-            <span id="a1">invalid message</span>
+            <span id="fpEmailError"></span>
             <br />
             <button class="btn btn-light verify" type="submit" name="verify">Verify</button>
-            <br>
+            <br><br>
             <a href="#">
               <h6 onclick="switchVisible()">Back to Login</h6>
             </a>

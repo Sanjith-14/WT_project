@@ -24,43 +24,58 @@ function switchVisible() {
   }
 }
 
-const validateEmail = () => {
-  const emailElement = document.getElementById("email");
-  const email = emailElement.value;
+const validateEmail = (obtainedEmail, obtainedEmailError) => {
+  const email = obtainedEmail.value;
   var regex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (email.trim() == "") {
-    return "Email can't be empty";
+    obtainedEmailError.innerText = "Email can't be empty";
+    return false;
   }
   if (!String(email).match(regex)) {
-    return "Invalid email";
+    obtainedEmailError.innerText = "Invalid email";
+    return false;
   }
-  return "";
+  obtainedEmailError.innerText = "";
+  return true;
 };
 
-const validatePassword = () => {
-  const passwordElement = document.getElementById("password");
-  const password = passwordElement.value;
-  if (password.trim() == "") {
-    return "Password can't be empty";
+const validateText = (obtainedElement, obtainedElementError, text) => {
+  const value = obtainedElement.value;
+  if (value.trim() == "") {
+    obtainedElementError.innerText = text + " can't be empty";
+    return false;
   }
-  return "";
+  obtainedElementError.innerText = "";
+  return true;
 };
 
 const validateForm = () => {
+  const emailElement = document.getElementById("email");
   const emailError = document.getElementById("emailError");
-  const emailErrorText = validateEmail();
-  emailError.innerText = emailErrorText;
+  const emailValidation = validateEmail(emailElement, emailError);
+
+  const passwordElement = document.getElementById("password");
   const passwordError = document.getElementById("passwordError");
-  const passwordErrorText = validatePassword();
-  passwordError.innerText = passwordErrorText;
-  return emailErrorText === "" && passwordErrorText === "";
+  const passwordValidation = validateText(
+    passwordElement,
+    passwordError,
+    "Password"
+  );
+
+  return emailValidation && passwordValidation;
 };
 
 const loginForm = document.getElementById("loginForm");
 loginForm.addEventListener("submit", (event) => {
-  console.log("Submit");
   if (!validateForm()) event.preventDefault();
 });
 
-
+const fpForm = document.getElementById("fpForm");
+fpForm.addEventListener("submit", (event) => {
+  const fpEmailElement = document.getElementById("fpEmail");
+  const fpEmail = document.getElementById("fpEmailError");
+  if (!validateEmail(fpEmailElement, fpEmailError)) {
+    event.preventDefault();
+  }
+});
