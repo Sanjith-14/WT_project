@@ -142,7 +142,7 @@
 
         <li>
           <a href="#">
-            <form action="" method="post">
+            <form action="/add-user" method="post">
               <input type="hidden" value="<%=email%>" name="email" />
               <input type="hidden" value="all" name="dropVal" />
               <button
@@ -156,8 +156,7 @@
                 value="pending"
                 class="link_name"
               >
-                <i class="bx bx-add-to-queue"></i>Add
-                Students&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="bx bx-add-to-queue"></i>Add Users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </button>
             </form>
           </a>
@@ -240,7 +239,7 @@
 
         <% if (item.mails.pendingFlag === true) { %>
           <div class="actions">
-            <form action="/approve-request" method="post">
+            <form id = "approveRejectForm" action="/validate-request" method="post">
               <input type="hidden" name="id" value="<%=item.mails._id%>" />
               <input type="hidden"  name="email" value="<%=item.mails.toMail%>" />
               <input type="hidden" id="keyval" name="key" value="" />
@@ -250,6 +249,7 @@
                 placeholder="Comments"
                 class="form-control"
                 type="text"
+                value=""
               ></input>
               <span class="error">Comments can't be empty</span>
               <br />
@@ -315,7 +315,30 @@
       event.preventDefault();
       document.getElementById("keyval").value= value;
       console.log(document.getElementById("keyval"));
+      let res = document.getElementById("keyval").value;
+      console.log("RESULT",res);
+      var approveRejectform = document.getElementById("approveRejectForm");
+      if (res === "approve" || res === "reject") {
+        approveRejectform.submit()
+      } 
+      else {
+       alert('Error');
+      }
     }
+
+  //   var approveRejectform = document.getElementById("approveRejectForm");
+  //   approveRejectform.addEventListener('submit', function (event) {
+  //     event.preventDefault()
+  //     document.getElementById("keyval").value= value;
+  //     let res = document.getElementById("keyval").value;
+  //     console.log("RESULT",res);
+  //     if (res === "approve" || res === "reject") {
+  //       approveRejectform.submit()
+  //     } 
+  //     else {
+  //      alert('Error');
+  //     }
+  // })
     
   </script>
   <script src="js/NavBar.js" charset="utf-8"></script>

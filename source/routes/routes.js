@@ -18,7 +18,9 @@ const newReq = require("../controllers/newReq");
 
 const viewParticularRequest = require("../controllers/viewParticularRequest");
 
-const requests = require("../controllers/approveOrRejectReq");
+// const requests = require("../controllers/approveOrRejectReq");
+
+const approveOrRejectReq = require('../controllers/approveOrRejectReq')
 
 const threeRequests = require("../controllers/ViewRequestUser");
 
@@ -27,6 +29,8 @@ const viewRequest = require("../controllers/viewAllRequest");
 const viewRequestAdmin = require("../controllers/viewRequestAdmin");
 
 const viewReadUser = require("../controllers/ViewReadUser")
+
+const addUser = require('../controllers/addUserAdmin')
 
 router.get("/", (req, res) => {
   try {
@@ -41,7 +45,9 @@ router.post("/login-user", loginRegisterItem.LoginUser);
 
 router.post("/register-user", loginRegisterItem.RegisterUser);
 
-router.get("/add-detail", addDetail);
+router.post("/add-request", addDetail);
+
+router.post("/add-user", addUser); //For admins only..
 
 router.post("/new-request", newReq);
 
@@ -51,9 +57,11 @@ router.post("/view-particular-request", viewParticularRequest);
 
 // router.get("/view-request",viewRequestAdmin) - deleted..
 
-router.post("/approve-request", requests.approveRequest);
+// router.post("/approve-request", requests.approveRequest);
 
-router.post("/reject-request", requests.rejectRequest);
+// router.post("/reject-request", requests.rejectRequest);
+
+router.post("/validate-request", approveOrRejectReq);
 
 // router.get("/view-pending-request",threeRequests.viewPendingRequestUser)
 

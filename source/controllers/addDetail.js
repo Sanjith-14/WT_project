@@ -4,7 +4,7 @@ const Detail = items.Detail;
 const addDetail = async (req, res) => {
   try {
     const { email, toMail,priority, subject, content } = req.body;
-    console.log(email);
+    console.log(email,toMail,priority,subject,content);
     const detail = await Detail.updateOne(
       { email: email },
       {
@@ -21,7 +21,23 @@ const addDetail = async (req, res) => {
       }
     );
 
-    res.status(200).json({ message: "Added Detail" });
+    const data = await Detail.aggregate([
+      {
+        $unwind: "$mails",
+      },
+      {
+        $match: {
+          email: email,
+        },
+      },
+    ]);
+
+    res.render("client/clientViewRequest.ejs", {
+      data: data,
+      email: email,
+    });
+    // res.status(200).json({ message: "Added Detail" });
+
     
   } catch (error) {
     console.log("Error in add Detail");

@@ -41,8 +41,8 @@
       href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
     />
     <link rel="stylesheet" href="css/request.css" />
-    <!-- <link rel="stylesheet" href="css/card.css" /> -->
-    <title>User Requests</title>
+    <link rel="stylesheet" href="css/card.css" />
+    <title>Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
@@ -55,7 +55,7 @@
       <ul class="nav-links">
         <li>
           <a href="#">
-            <form action="/view-request-user" method="post">
+            <form action="/view-request-admin" method="post">
               <input type="hidden" value="<%=email%>" name="email" />
               <input type="hidden" value="all" name="dropVal" />
               <button
@@ -69,16 +69,15 @@
                 value="pending"
                 class="link_name"
               >
-                <i class="bx bxs-pyramid"></i>All Requests &nbsp;&nbsp;&nbsp;
+                <i class="bx bx-envelope"></i>All Requests &nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </button>
             </form>
           </a>
           <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">All mails</a></li>
+            <li><a class="link_name" href="#">All Requests</a></li>
           </ul>
         </li>
-
         <li>
           <div class="icon-link">
             <a href="#">
@@ -90,7 +89,7 @@
           <ul class="sub-menu">
             <li><a class="link_name" href="#">Filter By</a></li>
             <li>
-              <form action="/view-request-user" method="post">
+              <form action="/view-request-admin" method="post">
                 <input type="hidden" value="<%=email%>" name="email" />
                 <input type="hidden" value="approved" name="dropVal" />
                 <button
@@ -108,7 +107,7 @@
               </form>
             </li>
             <li>
-              <form action="/view-request-user" method="post">
+              <form action="/view-request-admin" method="post">
                 <input type="hidden" value="<%=email%>" name="email" />
                 <input type="hidden" value="rejected" name="dropVal" />
                 <button
@@ -126,7 +125,7 @@
               </form>
             </li>
             <li>
-              <form action="/view-request-user" method="post">
+              <form action="/view-request-admin" method="post">
                 <input type="hidden" value="<%=email%>" name="email" />
                 <input type="hidden" value="pending" name="dropVal" />
                 <button
@@ -146,57 +145,10 @@
         </li>
 
         <li>
-          <div class="icon-link">
-            <a href="#">
-              <i class="bx bx-book-alt"></i>
-              <span class="link_name">View Status</span>
-            </a>
-            <i class="bx bxs-chevron-down arrow"></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="link_name" href="#">View Status</a></li>
-            <li>
-              <form action="/view-read-user" method="post">
-                <input type="hidden" value="<%=email%>" name="email" />
-                <input type="hidden" value="read" name="choice" />
-                <button
-                  style="
-                    background-color: white;
-                    color: #77619e;
-                    outline: none;
-                    border: none;
-                    margin-bottom: 15px;
-                  "
-                  value="approved"
-                >
-                  Read Requests
-                </button>
-              </form>
-            </li>
-            <li>
-              <form action="/view-read-user" method="post">
-                <input type="hidden" value="<%=email%>" name="email" />
-                <input type="hidden" value="notRead" name="choice" />
-                <button
-                  style="
-                    background-color: white;
-                    color: #77619e;
-                    outline: none;
-                    border: none;
-                  "
-                  value="rejected"
-                >
-                  Unread Requests
-                </button>
-              </form>
-            </li>
-          </ul>
-        </li>
-
-        <li>
           <a href="#">
-            <form action="/new-request" method="post">
+            <form action="/add-user" method="post">
               <input type="hidden" value="<%=email%>" name="email" />
+              <!-- <input type="hidden" value="all" name="dropVal" /> -->
               <button
                 style="
                   width: 300px;
@@ -208,13 +160,13 @@
                 value="pending"
                 class="link_name"
               >
-                <i class="bx bx-message-add"></i>Add
-                Request&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="bx bx-add-to-queue"></i>Add
+                Users&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </button>
             </form>
           </a>
           <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Add Request</a></li>
+            <li><a class="link_name" href="#">Add Students</a></li>
           </ul>
         </li>
 
@@ -236,7 +188,7 @@
               />
             </div>
             <div style="padding: 30px 0" class="name-job">
-              <div class="profile_name">User</div>
+              <div class="profile_name">Admin</div>
               <div style="font-size: 15px" class="profile_name"><%=email%></div>
             </div>
             <a href="/"><i class="bx bx-log-out"></i></a>
@@ -248,48 +200,48 @@
     <section class="home-section">
       <div class="home-content">
         <i class="bx bx-menu"></i>
-        <span class="text">Add Request</span>
+        <span class="text">Add Users</span>
       </div>
-      
+
       <div class="join-div">
         <div style="margin-left: 150px;margin-top:35px;" class="container">
           <form
             class="well form-horizontal"
-            action="/add-request"
+            action="/register-user"
             method="post"
-            id="contact_form"
             >
             <fieldset>
-  
-  
-              <div class="form-group">
-                <label class="col-md-4 control-label">From</label>
-                <div class="col-md-4 inputGroupContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"
-                      ><i class="glyphicon glyphicon-link"></i
-                    ></span>
-                    <input
-                      placeholder="<%=email%>"
-                      class="form-control"
-                      type="text"
-                      disabled
-                    />
-                    <input type="hidden" value="<%=email%>" name="email">
+                
+                <div class="form-group">
+                    <input type="hidden" value="<%=email%>" name="adminMail">
+                    <label class="col-md-4 control-label">Name : </label>
+                    <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"
+                          ><i class="glyphicon glyphicon-link"></i
+                        ></span>
+                        <input
+                          name="name"
+                          placeholder="Name"
+                          class="form-control"
+                          type="text"
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+  
+              
   
               
               <div class="form-group">
-                <label class="col-md-4 control-label">To</label>
+                <label class="col-md-4 control-label">Email address : </label>
                 <div class="col-md-4 inputGroupContainer">
                   <div class="input-group">
                     <span class="input-group-addon"
                       ><i class="glyphicon glyphicon-link"></i
                     ></span>
                     <input
-                      name="toMail"
+                      name="email"
                       placeholder="Mail Address"
                       class="form-control"
                       type="email"
@@ -299,24 +251,37 @@
               </div>
   
               
-  
-              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-md-4 control-label">Roll number : </label>
+                <div class="col-md-4 inputGroupContainer">
+                  <div class="input-group">
+                    <span class="input-group-addon"
+                      ><i class="glyphicon glyphicon-link"></i
+                    ></span>
+                    <input
+                      name="rollNo"
+                      placeholder="Unique id"
+                      class="form-control"
+                      type="text"
+                    />
+                  </div>
+                </div>
+              </div>
   
               
   
-              <!-- Select Basic -->
+              
   
               <div class="form-group">
-                <label class="col-md-4 control-label">Priority</label>
+                <label class="col-md-4 control-label">Role</label>
                 <div class="col-md-4 selectContainer">
                   <div class="input-group">
                     <span class="input-group-addon"
                       ><i class="glyphicon glyphicon-list"></i
                     ></span>
-                    <select name="priority" class="form-control selectpicker">
-                      <option value="high">High</option>
-                      <option value="low">Low</option>
-                      <option value="medium">Medium</option>
+                    <select name="role" class="form-control selectpicker">
+                      <option value="admin">Admin</option>
+                      <option value="student">Student</option>
                     </select>
                     <!-- To pass to ejs.. -->
                     <!-- <input type="hidden" value="priority"> -->
@@ -327,7 +292,7 @@
               <!-- Text area -->
   
               <div class="form-group">
-                <label class="col-md-4 control-label">Subject</label>
+                <label class="col-md-4 control-label">Department</label>
                 <div class="col-md-4 inputGroupContainer">
                   <div class="input-group">
                     <span class="input-group-addon"
@@ -335,31 +300,14 @@
                     ></span>
                     <input
                       class="form-control"
-                      name="subject"
-                      placeholder="Hardware - reg"
+                      name="dept"
+                      placeholder="Department"
                     ></input>
                   </div>
                 </div>
               </div>
   
-              <div class="form-group">
-                <label class="col-md-4 control-label">Content</label>
-                <div class="col-md-4 inputGroupContainer">
-                  <div class="input-group">
-                    <span class="input-group-addon"
-                      ><i class="glyphicon glyphicon-pencil"></i
-                    ></span>
-                    <!-- For passing value to ejs , use input hidden -->
-                    <textarea
-                      id="textareaId"
-                      class="form-control"
-                      name="content"
-                      placeholder="Compose content"
-                      rows="6"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
+              
               <!-- submit -->
               <button class="btn btn-light" style="margin-left: 10%;margin-top: 30px;font-size: 20px;" type="submit" name="button">Submit</button>
             </fieldset>
@@ -367,13 +315,13 @@
         </div>
 
         <div>
-          <img style="height: 100vh;width: 650px;margin-left: -700px;margin-top: -150px; object-fit: contain;" src="images/newRequest.png" alt="">
+          <img style="height: 100vh;width: 750px;margin-left: -600px;margin-top: -150px; object-fit: contain;" src="images/newRequest.png" alt="">
         </div>
 
       </div>
 
-      
     </section>
+
+    <script src="js/NavBar.js" charset="utf-8"></script>
   </body>
-  <script src="js/NavBar.js" charset="utf-8"></script>
 </html>

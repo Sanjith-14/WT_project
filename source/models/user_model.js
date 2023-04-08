@@ -95,10 +95,6 @@ const credentialSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  admNo: {
-    type: String,
-    required: true,
-  },
   rollNo: {
     type: String,
     required: true,

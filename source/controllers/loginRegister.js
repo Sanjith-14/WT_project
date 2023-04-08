@@ -4,13 +4,14 @@ const Detail = items.Detail;
 
 const RegisterUser = async (req, res) => {
   try {
-    const { email, name, admNo, rollNo, dept, role, password } = req.body;
+    const { email, name, rollNo, dept, role } = req.body;
+    const password = rollNo;
+    const adminMail = req.body.adminMail;
     const userCheck = await Credential.find({ email: email });
     if (userCheck.length == 0) {
       const credential = new Credential({
         email: email,
         name: name,
-        admNo: admNo,
         rollNo: rollNo,
         dept: dept,
         role: role,
@@ -19,7 +20,8 @@ const RegisterUser = async (req, res) => {
       await credential.save();
       const detail = new Detail({ name: name, email: email });
       await detail.save();
-      return res.status(200).json({ message: "User registered successfully" });
+      res.render("admin/adminAddUser.ejs", { email: adminMail });
+      // return res.status(200).json({ message: "User registered successfully" });
       // redirect to home / login page
     } else {
       return res.status(200).json({ message: "User already exists" });
@@ -43,7 +45,7 @@ const LoginUser = async (req, res) => {
       // Redirect to admin/client page
 
       let u = user[0].role;
-      if (u === "Student") {
+      if (u === "student") {
         const data = await Detail.aggregate([
           {
             $unwind: "$mails",
@@ -59,7 +61,7 @@ const LoginUser = async (req, res) => {
           data: data,
           email: email,
         });
-      } else if (u == "Admin") {
+      } else if (u == "admin") {
         const data = await Detail.aggregate([
           {
             $unwind: "$mails",

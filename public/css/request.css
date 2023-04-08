@@ -267,3 +267,18 @@ button :hover {
     left: 0;
   }
 }
+
+/* For forms - user */
+.form-group{
+  margin-top: 25px;
+}
+
+.form-group label{
+  margin-bottom: 10px;
+}
+
+.join-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
